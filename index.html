@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --white: #ffffff;
@@ -728,6 +732,133 @@
             }
         }
 
+        /* Typing Animation */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--muted-gold); }
+        }
+
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid var(--muted-gold);
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            max-width: fit-content;
+        }
+
+        /* Floating Animation for Profile Image */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .floating-image {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Pulse Animation for CTA Button */
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(201, 162, 39, 0); }
+        }
+
+        .btn-primary.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Bounce Animation for icons */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .bounce-hover:hover i {
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        /* Scale Animation */
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        /* Rotate Animation */
+        @keyframes rotateIn {
+            from { transform: rotate(-180deg); opacity: 0; }
+            to { transform: rotate(0deg); opacity: 1; }
+        }
+
+        /* Gradient Animation */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        /* Section Reveal Animation */
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Card Hover */
+        .enhanced-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .enhanced-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(26, 39, 68, 0.15);
+        }
+
+        /* Button Hover Enhancements */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -737,6 +868,29 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Shimmer Effect */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        /* Wave Animation */
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .wave-hover:hover {
+            animation: wave 0.5s ease-in-out;
         }
 
         /* Mobile Responsive */
@@ -818,49 +972,49 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>NWANKWO ESTHER CHIDINDU</h1>
-                <p class="title">Executive Administrative Professional</p>
-                <p class="tagline">"Bringing Structure, Efficiency & Professional Excellence to Executive Operations."</p>
+                <h1 data-aos="fade-right" data-aos-duration="1000">NWANKWO ESTHER CHIDINDU</h1>
+                <p class="title" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">Executive Administrative Professional</p>
+                <p class="tagline typing-text" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">"Bringing Structure, Efficiency & Professional Excellence to Executive Operations."</p>
                 
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> nwankwoesther555@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> 09032570911</p>
+                <div class="contact-info" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                    <p class="bounce-hover"><i class="fas fa-envelope"></i> nwankwoesther555@gmail.com</p>
+                    <p class="bounce-hover"><i class="fas fa-phone"></i> 09032570911</p>
                 </div>
                 
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact Me</a>
+                <div class="cta-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+                    <a href="#contact" class="btn btn-primary pulse"><i class="fas fa-paper-plane"></i> Contact Me</a>
                     <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Download CV</a>
                 </div>
             </div>
             
-            <div class="hero-image">
+            <div class="hero-image floating-image" data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="300">
                 <img src="public/asset/headshot.jpeg" alt="NWANKWO ESTHER CHIDINDU">
             </div>
         </div>
     </section>
 
     <!-- Professional Summary -->
-    <section class="summary" id="summary">
-        <div class="section-header">
+    <section class="summary section-reveal" id="summary">
+        <div class="section-header" data-aos="fade-up">
             <h2>Professional Summary</h2>
         </div>
         <div class="summary-content">
-            <p>Highly organized and detail-oriented Administrative Professional with experience supporting senior leadership, including a United Nations Awardee & Human Rights Advocate. Skilled in calendar management, correspondence handling, meeting preparation, task tracking, and maintaining confidentiality. Bringing structure, efficiency, and professionalism to every aspect of executive operations.</p>
+            <p data-aos="fade-up" data-aos-delay="200">Highly organized and detail-oriented Administrative Professional with experience supporting senior leadership, including a United Nations Awardee & Human Rights Advocate. Skilled in calendar management, correspondence handling, meeting preparation, task tracking, and maintaining confidentiality. Bringing structure, efficiency, and professionalism to every aspect of executive operations.</p>
             
-            <div class="summary-values">
-                <div class="value-item">
+            <div class="summary-values" data-aos="fade-up" data-aos-delay="400">
+                <div class="value-item bounce-hover">
                     <i class="fas fa-check-circle"></i>
                     <span>Structure</span>
                 </div>
-                <div class="value-item">
+                <div class="value-item bounce-hover">
                     <i class="fas fa-check-circle"></i>
                     <span>Efficiency</span>
                 </div>
-                <div class="value-item">
+                <div class="value-item bounce-hover">
                     <i class="fas fa-check-circle"></i>
                     <span>Confidentiality</span>
                 </div>
-                <div class="value-item">
+                <div class="value-item bounce-hover">
                     <i class="fas fa-check-circle"></i>
                     <span>Professionalism</span>
                 </div>
@@ -869,57 +1023,57 @@
     </section>
 
     <!-- Core Competencies -->
-    <section class="competencies" id="competencies">
-        <div class="section-header">
+    <section class="competencies section-reveal" id="competencies">
+        <div class="section-header" data-aos="fade-up">
             <h2>Core Competencies</h2>
             <p>Essential skills that drive executive excellence</p>
         </div>
         
         <div class="competencies-grid">
-            <div class="competency-card">
-                <i class="fas fa-calendar-alt"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-calendar-alt bounce-hover"></i>
                 <h3>Calendar & Appointment Management</h3>
                 <p>Strategic scheduling and time optimization for executives</p>
             </div>
             
-            <div class="competency-card">
-                <i class="fas fa-envelope-open-text"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-envelope-open-text bounce-hover"></i>
                 <h3>Email & Official Correspondence</h3>
                 <p>Professional communication and correspondence handling</p>
             </div>
             
-            <div class="competency-card">
-                <i class="fas fa-clipboard-list"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-clipboard-list bounce-hover"></i>
                 <h3>Meeting Preparation & Minutes</h3>
                 <p>Thorough preparation and accurate minute taking</p>
             </div>
             
-            <div class="competency-card">
-                <i class="fas fa-tasks"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-tasks bounce-hover"></i>
                 <h3>Task Tracking & Follow-Up</h3>
                 <p>Systematic task management and follow-through</p>
             </div>
             
-            <div class="competency-card">
-                <i class="fas fa-lock"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="500">
+                <i class="fas fa-lock bounce-hover"></i>
                 <h3>Confidential Information Management</h3>
                 <p>Secure handling of sensitive information</p>
             </div>
             
-            <div class="competency-card">
-                <i class="fas fa-folder-open"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="600">
+                <i class="fas fa-folder-open bounce-hover"></i>
                 <h3>Digital File Organization</h3>
                 <p>Efficient document management systems</p>
             </div>
             
-            <div class="competency-card">
-                <i class="fas fa-comments"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="700">
+                <i class="fas fa-comments bounce-hover"></i>
                 <h3>Professional Communication</h3>
                 <p>Clear and effective professional correspondence</p>
             </div>
             
-            <div class="competency-card">
-                <i class="fas fa-share-alt"></i>
+            <div class="competency-card enhanced-card" data-aos="fade-up" data-aos-delay="800">
+                <i class="fas fa-share-alt bounce-hover"></i>
                 <h3>Social Media Coordination</h3>
                 <p>Basic social media management and coordination</p>
             </div>
@@ -927,15 +1081,15 @@
     </section>
 
     <!-- Professional Experience -->
-    <section class="experience" id="experience">
-        <div class="section-header">
+    <section class="experience section-reveal" id="experience">
+        <div class="section-header" data-aos="fade-up">
             <h2>Professional Experience</h2>
             <p>Supporting executive excellence through dedicated administrative care</p>
         </div>
         
         <div class="experience-container">
             <!-- Executive Administrative Support -->
-            <div class="experience-item fade-in">
+            <div class="experience-item fade-in enhanced-card" data-aos="fade-left" data-aos-duration="800">
                 <div class="experience-header">
                     <div>
                         <h3>Executive Administrative Support</h3>
@@ -944,7 +1098,7 @@
                     <span class="period">2026</span>
                 </div>
                 
-                <a href="https://www.linkedin.com/in/thegiftchikere" target="_blank" rel="noopener noreferrer" class="experience-link">
+                <a href="https://www.linkedin.com/in/thegiftchikere" target="_blank" rel="noopener noreferrer" class="experience-link wave-hover">
                     <i class="fab fa-linkedin"></i> View LinkedIn Profile
                 </a>
                 
@@ -960,22 +1114,22 @@
                     </ul>
                 </div>
                 
-                <div class="impact-section">
+                <div class="impact-section" data-aos="fade-up" data-aos-delay="200">
                     <h4>Impact</h4>
                     <div class="impact-grid">
-                        <div class="impact-item">
+                        <div class="impact-item bounce-hover">
                             <i class="fas fa-arrow-right"></i>
                             <span>Streamlined scheduling systems</span>
                         </div>
-                        <div class="impact-item">
+                        <div class="impact-item bounce-hover">
                             <i class="fas fa-arrow-right"></i>
                             <span>Optimized correspondence clarity</span>
                         </div>
-                        <div class="impact-item">
+                        <div class="impact-item bounce-hover">
                             <i class="fas fa-arrow-right"></i>
                             <span>Created reliable task tracking systems</span>
                         </div>
-                        <div class="impact-item">
+                        <div class="impact-item bounce-hover">
                             <i class="fas fa-arrow-right"></i>
                             <span>Ensured seamless executive operations</span>
                         </div>
@@ -984,7 +1138,7 @@
             </div>
             
             <!-- Social Media Support -->
-            <div class="experience-item fade-in">
+            <div class="experience-item fade-in enhanced-card" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
                 <div class="experience-header">
                     <div>
                         <h3>Social Media Support</h3>
@@ -994,10 +1148,10 @@
                 </div>
                 
                 <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                    <a href="https://www.instagram.com/mitchandgoodsupermarket" target="_blank" rel="noopener noreferrer" class="experience-link">
+                    <a href="https://www.instagram.com/mitchandgoodsupermarket" target="_blank" rel="noopener noreferrer" class="experience-link wave-hover">
                         <i class="fab fa-instagram"></i> Instagram
                     </a>
-                    <a href="https://youtube.com/@mitchandgoodsupermarketikoyi" target="_blank" rel="noopener noreferrer" class="experience-link">
+                    <a href="https://youtube.com/@mitchandgoodsupermarketikoyi" target="_blank" rel="noopener noreferrer" class="experience-link wave-hover">
                         <i class="fab fa-youtube"></i> YouTube
                     </a>
                 </div>
@@ -1011,14 +1165,14 @@
                     </ul>
                 </div>
                 
-                <div class="impact-section">
+                <div class="impact-section" data-aos="fade-up" data-aos-delay="200">
                     <h4>Impact</h4>
                     <div class="impact-grid">
-                        <div class="impact-item">
+                        <div class="impact-item bounce-hover">
                             <i class="fas fa-arrow-right"></i>
                             <span>Maintained consistent brand communication</span>
                         </div>
-                        <div class="impact-item">
+                        <div class="impact-item bounce-hover">
                             <i class="fas fa-arrow-right"></i>
                             <span>Supported engagement growth</span>
                         </div>
@@ -1029,14 +1183,14 @@
     </section>
 
     <!-- Education -->
-    <section class="education" id="education">
-        <div class="section-header">
+    <section class="education section-reveal" id="education">
+        <div class="section-header" data-aos="fade-up">
             <h2>Education</h2>
             <p>Academic foundation in mass communication</p>
         </div>
         
         <div class="education-content">
-            <div class="education-item fade-in">
+            <div class="education-item fade-in enhanced-card" data-aos="zoom-in" data-aos-delay="200">
                 <h3>University of Lagos</h3>
                 <p class="degree">B.Sc. Mass Communication</p>
                 <p class="year">2023 – Present</p>
@@ -1045,45 +1199,45 @@
     </section>
 
     <!-- Why Hire Me -->
-    <section class="why-hire-me" id="why-hire-me">
-        <div class="section-header">
+    <section class="why-hire-me section-reveal" id="why-hire-me">
+        <div class="section-header" data-aos="fade-up">
             <h2>Why Hire Me</h2>
             <p>Executive-level qualities that make a difference</p>
         </div>
         
         <div class="reasons-grid">
-            <div class="reason-card">
-                <i class="fas fa-shield-alt"></i>
+            <div class="reason-card enhanced-card" data-aos="flip-left" data-aos-delay="100">
+                <i class="fas fa-shield-alt bounce-hover"></i>
                 <h3>High-Level Confidentiality</h3>
                 <p>Trusted with sensitive information and discrete in all dealings</p>
             </div>
             
-            <div class="reason-card">
-                <i class="fas fa-user-tie"></i>
+            <div class="reason-card enhanced-card" data-aos="flip-left" data-aos-delay="200">
+                <i class="fas fa-user-tie bounce-hover"></i>
                 <h3>Executive Support Expertise</h3>
                 <p>Proven track record of supporting senior leadership effectively</p>
             </div>
             
-            <div class="reason-card">
-                <i class="fas fa-clipboard-check"></i>
+            <div class="reason-card enhanced-card" data-aos="flip-left" data-aos-delay="300">
+                <i class="fas fa-clipboard-check bounce-hover"></i>
                 <h3>Strong Organization</h3>
                 <p>Exceptional organizational skills with meticulous attention to detail</p>
             </div>
             
-            <div class="reason-card">
-                <i class="fas fa-clock"></i>
+            <div class="reason-card enhanced-card" data-aos="flip-left" data-aos-delay="400">
+                <i class="fas fa-clock bounce-hover"></i>
                 <h3>Reliability & Efficiency</h3>
                 <p>Dependable professional who delivers results on time</p>
             </div>
             
-            <div class="reason-card">
-                <i class="fas fa-phone-alt"></i>
+            <div class="reason-card enhanced-card" data-aos="flip-left" data-aos-delay="500">
+                <i class="fas fa-phone-alt bounce-hover"></i>
                 <h3>Professional Communication</h3>
                 <p>Excellent verbal and written communication skills</p>
             </div>
             
-            <div class="reason-card">
-                <i class="fas fa-handshake"></i>
+            <div class="reason-card enhanced-card" data-aos="flip-left" data-aos-delay="600">
+                <i class="fas fa-handshake bounce-hover"></i>
                 <h3>Follow-Through</h3>
                 <p>Consistent follow-through on tasks and commitments</p>
             </div>
@@ -1125,7 +1279,27 @@
         </div>
     </footer>
 
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize AOS Animation with enhanced settings
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100,
+            delay: 100,
+            mirror: true,
+            anchorPlacement: 'top-bottom'
+        });
+
+        // Re-initialize AOS on scroll for better animation triggering
+        window.addEventListener('scroll', () => {
+            AOS.refresh();
+        });
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1138,6 +1312,25 @@
                     });
                 }
             });
+        });
+
+        // Section Reveal Animation Observer
+        const sectionObserverOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    AOS.refresh();
+                }
+            });
+        }, sectionObserverOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            sectionObserver.observe(section);
         });
 
         // Fade in animation on scroll
@@ -1158,7 +1351,7 @@
             observer.observe(el);
         });
 
-        // Navbar background change on scroll
+        // Navbar background change on scroll with smooth transition
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
@@ -1168,6 +1361,70 @@
                 nav.style.background = 'rgba(255, 255, 255, 0.95)';
                 nav.style.boxShadow = '0 2px 20px rgba(26, 39, 68, 0.05)';
             }
+        });
+
+        // Enhanced button hover animations
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Card hover effects with smooth transitions
+        const cards = document.querySelectorAll('.competency-card, .reason-card, .education-item');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+        });
+
+        // Parallax effect on hero section
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            if (hero) {
+                hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            }
+        });
+
+        // Add staggered animation to competency cards on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const competencyCards = document.querySelectorAll('.competency-card');
+            competencyCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            const reasonCards = document.querySelectorAll('.reason-card');
+            reasonCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Icon scale animation for value items
+        const valueItems = document.querySelectorAll('.value-item');
+        valueItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        icon.style.transform = 'scale(1)';
+                    }, 300);
+                }
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
         });
     </script>
 </body>
