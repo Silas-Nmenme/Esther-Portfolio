@@ -22,6 +22,25 @@
             --text-dark: #2c3e50;
             --text-light: #6b7c93;
             --shadow: 0 10px 40px rgba(26, 39, 68, 0.1);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: #ffffff;
+            --card-shadow: 0 5px 20px rgba(26, 39, 68, 0.05);
+            --border-color: rgba(26, 39, 68, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --white: #1a1a2e;
+            --soft-beige: #16213e;
+            --navy-blue: #0f3460;
+            --muted-gold: #e8b923;
+            --gold-light: #c9a227;
+            --text-dark: #eaeaea;
+            --text-light: #a0a0a0;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --nav-bg: rgba(26, 26, 46, 0.95);
+            --card-bg: #1a1a2e;
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            --border-color: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -996,6 +1015,60 @@
                 align-items: center;
             }
         }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--navy-blue);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy-blue);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--navy-blue);
+            color: var(--white);
+            transform: rotate(15deg);
+        }
+
+        .theme-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Dark mode specific overrides */
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+        }
+
+        [data-theme="dark"] .competency-card {
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
+        }
+
+        [data-theme="dark"] .education-item {
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
+        }
+
+        [data-theme="dark"] .impact-section {
+            background: var(--card-bg);
+        }
+
+        [data-theme="dark"] .hero-image::before {
+            border-color: var(--muted-gold);
+        }
     </style>
 </head>
 <body>
@@ -1009,6 +1082,9 @@
             <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
     </nav>
 
     <!-- Hero Section -->
@@ -1497,6 +1573,61 @@
                 });
             });
         }
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Apply theme on page load
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const icon = themeToggle.querySelector('i');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+
+        // Update navbar background for dark mode
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+            
+            if (window.scrollY > 50) {
+                if (isDarkMode) {
+                    nav.style.background = 'rgba(26, 26, 46, 0.98)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                }
+                nav.style.boxShadow = '0 2px 20px rgba(26, 39, 68, 0.1)';
+            } else {
+                if (isDarkMode) {
+                    nav.style.background = 'rgba(26, 26, 46, 0.95)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
+                nav.style.boxShadow = '0 2px 20px rgba(26, 39, 68, 0.05)';
+            }
+        });
     </script>
     
     <!-- Back to Top Button -->
