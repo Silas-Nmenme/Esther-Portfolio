@@ -999,8 +999,66 @@
                 justify-content: center;
             }
 
+            /* Mobile Navigation */
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--nav-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(26, 39, 68, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            /* Hamburger Menu */
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                cursor: pointer;
+                z-index: 1001;
+            }
+
+            .hamburger span {
+                width: 25px;
+                height: 3px;
+                background: var(--navy-blue);
+                transition: all 0.3s ease;
+                border-radius: 2px;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            nav {
+                padding: 1rem 5%;
+            }
+
+            nav .logo {
+                z-index: 1001;
             }
         }
 
@@ -1068,6 +1126,26 @@
             .experience-responsibilities ul {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* Default hamburger hidden */
+        .hamburger {
+            display: none;
+        }
+
+        /* Typing animation for desktop */
+        .typing-text {
+            overflow: hidden;
+            white-space: normal;
+            border-right: none;
+            animation: none;
+            display: block;
+        }
+
+        /* Fix horizontal overflow */
+        body {
+            overflow-x: hidden;
+            max-width: 100vw;
         }
 
         /* Theme Toggle Button */
