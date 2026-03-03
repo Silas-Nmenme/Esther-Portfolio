@@ -170,7 +170,7 @@
         }
 
         // Theme Toggle Functionality
-        const themeToggle = document.getElementById('themeToggle');
+        /* const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
         
         // Check for saved theme preference or use system preference
@@ -200,10 +200,10 @@
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
             }
-        });
+        }); */
 
         // Update navbar background for dark mode
-        window.addEventListener('scroll', () => {
+        /* window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
             
@@ -222,5 +222,5 @@
                 }
                 nav.style.boxShadow = '0 2px 20px rgba(26, 39, 68, 0.05)';
             }
-        });
+        }); */
 
